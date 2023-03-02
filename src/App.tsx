@@ -2,7 +2,7 @@ import './App.css';
 import GlobalNavigation from "./GlobalNavigation";
 import Home from './view/Home';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link

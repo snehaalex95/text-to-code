@@ -1,8 +1,8 @@
 {
   "name": "text-to-code",
   "version": "0.1.0",
-  "homepage": "https://github.com/snehaalex95/text-to-code",
-  "private": false,
+  "homepage": "https://snehaalex95.github.io/text-to-code",
+  "private": true,
   "dependencies": {
     "@atlaskit/atlassian-navigation": "^2.3.5",
     "@atlaskit/avatar": "^21.1.9",
@@ -35,7 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
