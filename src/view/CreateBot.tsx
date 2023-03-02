@@ -7,6 +7,7 @@ import TextArea from "@atlaskit/textarea";
 import TextField from "@atlaskit/textfield";
 import {colors} from "@atlaskit/theme";
 import Spinner from '@atlaskit/spinner';
+import {useState} from 'react';
 import Form, {
     ErrorMessage,
     Field,
@@ -35,9 +36,21 @@ line-height: 28px;
 color: #253858;
 margin-left: 4px;
 `
+export function timeout(delay: number) {
+  return new Promise( res => setTimeout(res, delay) );
+}
+
 const CreateBot = (props:any) => {
     const history = useHistory();
+    const [isCreating, setIsCreating] = useState(false);
     const {mutate: createBotMutation, data} = useMutation(() => createBot());
+    async function handleCreate(){
+      setIsCreating(true)
+      createBotMutation()
+      await timeout(3000)
+      setIsCreating(false)
+      history.push('/bot-configuration');
+    }
     return(
         <CreateBotContainer>
     <Form<{ username: string; password: string; remember: boolean }>
@@ -86,12 +99,13 @@ const CreateBot = (props:any) => {
           </FormSection>
           <FormFooter>
             <ButtonGroup>
+            { isCreating && <Spinner/>}
               <Button appearance="subtle">Clear</Button>
               <LoadingButton
                 type="submit"
                 appearance="primary"
                 isLoading={submitting}
-                onClick={() => createBotMutation()}
+                onClick={() => handleCreate()}
               >
                 Create
               </LoadingButton>
