@@ -8,6 +8,8 @@ import ImageURL from "../BuildExtend-Software-Development-Workflow-1-1560x760.pn
 import { useHistory } from "react-router-dom";
 import Form, { Field } from "@atlaskit/form";
 import CreateBot from "./CreateBot";
+import Spinner from '@atlaskit/spinner';
+import { timeout } from "./CreateBot";
 const HomeContainer = styled.div``;
 const BannerStyled = styled.div`
   position: relative;
@@ -71,12 +73,24 @@ const CreateBotText = styled.div`
   color: #000000;
   margin-bottom: 12px;
 `;
+
+const SpinnerContainer = styled.div`
+    display: flex;
+    height: calc(100vh - 56px);
+    justify-content: center;
+    padding-top: 20px;
+`
 const Home = () => {
   const history = useHistory();
   const [searchQuery, setSearchQuery] = useState<string>();
   const [search, setSearch] = useState(false);
   const [showCreateBot, setShowCreateBot] = useState(false);
-  function setSearchState(formState: any) {
+  const [isSearching, setIsSearching] = useState(false);
+
+  async function setSearchState(formState: any) {
+    setIsSearching(true)
+    await timeout(2000)
+    setIsSearching(false)
     setSearchQuery(formState["search-bar"]);
     setSearch(true);
   }
@@ -110,7 +124,6 @@ const Home = () => {
                     </SearchIconWrapper>
                   </Button>
                 </SearchButtonWrapper>
-                ​
               </form>
             )}
           </Form>
@@ -119,6 +132,10 @@ const Home = () => {
           <img src={ImageURL} alt="exmake background" />
         </ImageWrapper>
       </BannerStyled>
+      
+      {
+        isSearching && <SpinnerContainer><Spinner size = "large"/></SpinnerContainer>
+      }
       {search && (
         <CreateBotContainer>
           <CreateBotText>Did not find what you are looking for?</CreateBotText>
@@ -127,7 +144,7 @@ const Home = () => {
           </Button>
         </CreateBotContainer>
       )}
-      {showCreateBot && <CreateBot searchQuery={searchQuery} />}​
+      {showCreateBot && <CreateBot searchQuery={searchQuery} />}
     </HomeContainer>
   );
 };
