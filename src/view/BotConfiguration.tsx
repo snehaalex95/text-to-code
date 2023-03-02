@@ -11,12 +11,15 @@ import EditFilledIcon from '@atlaskit/icon/glyph/edit-filled';
 import VidPlayIcon from '@atlaskit/icon/glyph/vid-play';
 import TrashIcon from '@atlaskit/icon/glyph/trash';
 import { toast } from 'react-toastify';
+import {useState} from 'react';
 import Form, {
     Field,
     FormFooter,
     FormHeader,
     FormSection
   } from "@atlaskit/form";
+import { timeout } from './CreateBot';
+
 const ConfigContainer = styled.div`
     height: calc(100vh - 56px);
     background-color: ${colors.N20};
@@ -53,6 +56,20 @@ color: ${colors.B300};
 `
 const BotConfiguration = () => {
     const history = useHistory();
+    const [isSavingRecipe, setIsSavingRecipe] = useState(false);
+    const [isRunningRecipe, setIsRunningRecipe] = useState(false);
+    async function displayToastForRecipeSaved(){
+      setIsSavingRecipe(true);
+      await timeout(5000);
+      setIsSavingRecipe(false);
+      toast.success("Recipe successfully saved")
+    }
+    async function displayToastForRecipeRun() {
+      setIsRunningRecipe(true);
+      await timeout(5000);
+      setIsRunningRecipe(false);
+      toast.success("Recipe successfully Run")
+    }
     return(
        <ConfigContainer>
           
@@ -109,9 +126,9 @@ const BotConfiguration = () => {
           </FormSection>
           <FormFooter>
             <ButtonGroup>
-              <Button iconBefore={<StarIcon label="star" />} appearance="default" onClick = {()=>toast.success("Recipe successfully saved")}>Save Recipe</Button>
+              <LoadingButton iconBefore={<StarIcon label="star" />} isLoading={isSavingRecipe} appearance="default" onClick = {()=>displayToastForRecipeSaved()}>Save Recipe</LoadingButton>
               <Button appearance="default" iconBefore={<EditFilledIcon label='edit' />}>Modify</Button>
-              <Button appearance="primary" iconBefore={<VidPlayIcon label='play' />} >Run</Button>
+              <LoadingButton appearance="primary" iconBefore={<VidPlayIcon label='play' />} isLoading={isRunningRecipe} onClick = {()=>displayToastForRecipeRun()}>Run</LoadingButton>
               <Button appearance="danger" iconBefore={<TrashIcon label='delete' />}>Delete</Button>
             </ButtonGroup>
           </FormFooter>
