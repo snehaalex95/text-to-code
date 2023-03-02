@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/text-to-code/static/css/main.d5e10576.css",
-    "main.js": "/text-to-code/static/js/main.5581ed05.js",
+    "main.js": "/text-to-code/static/js/main.d1613d35.js",
     "static/js/787.556d7bee.chunk.js": "/text-to-code/static/js/787.556d7bee.chunk.js",
     "static/media/BuildExtend-Software-Development-Workflow-1-1560x760.png": "/text-to-code/static/media/BuildExtend-Software-Development-Workflow-1-1560x760.b1618d14eb9edde6e41a.png",
     "index.html": "/text-to-code/index.html",
     "main.d5e10576.css.map": "/text-to-code/static/css/main.d5e10576.css.map",
-    "main.5581ed05.js.map": "/text-to-code/static/js/main.5581ed05.js.map",
+    "main.d1613d35.js.map": "/text-to-code/static/js/main.d1613d35.js.map",
     "787.556d7bee.chunk.js.map": "/text-to-code/static/js/787.556d7bee.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d5e10576.css",
-    "static/js/main.5581ed05.js"
+    "static/js/main.d1613d35.js"
   ]
 }
