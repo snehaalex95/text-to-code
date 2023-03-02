@@ -7,7 +7,6 @@ import TextArea from "@atlaskit/textarea";
 import TextField from "@atlaskit/textfield";
 import {colors} from "@atlaskit/theme";
 import Spinner from '@atlaskit/spinner';
-
 import Form, {
     ErrorMessage,
     Field,
@@ -18,7 +17,7 @@ import Form, {
 import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { createBot } from '../api/createBot';
-
+import { useParams } from 'react-router-dom';
 const CreateBotContainer = styled.div`
     display: flex;
     height: calc(100vh - 56px);
@@ -36,10 +35,7 @@ line-height: 28px;
 color: #253858;
 margin-left: 4px;
 `
-
-
-
-const CreateBot = () => {
+const CreateBot = (props:any) => {
     const history = useHistory();
     const {mutate: createBotMutation, data} = useMutation(() => createBot());
     return(
@@ -49,7 +45,6 @@ const CreateBot = () => {
         if(data){
             history.push('/bot-configuration');
         }
-
       }}
     >
       {({ formProps, submitting }) => (
@@ -57,9 +52,6 @@ const CreateBot = () => {
           <FormHeader
             title={
                 <Header>
-                    <div onClick={() => history.goBack()} style={{cursor:'pointer'}}>
-                    <ArrowLeftIcon size='large' label='Back' />
-                    </div>
                     <HeaderText>Create a BOT</HeaderText>
                 </Header>
             }
@@ -74,7 +66,9 @@ const CreateBot = () => {
             >
               {({ fieldProps, error }) => (
                 <>
-                  <TextField placeholder='' autoComplete="off" {...fieldProps} />
+                  <TextField placeholder=''
+                             defaultValue={props.searchQuery}
+                             autoComplete="off" {...fieldProps}/>
                 </>
               )}
             </Field>
@@ -90,7 +84,6 @@ const CreateBot = () => {
               )}
             </Field>
           </FormSection>
-
           <FormFooter>
             <ButtonGroup>
               <Button appearance="subtle">Clear</Button>
@@ -107,9 +100,7 @@ const CreateBot = () => {
         </form>
       )}
     </Form>
-
         </CreateBotContainer>
     )
 }
-
 export default CreateBot;

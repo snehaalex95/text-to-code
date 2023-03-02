@@ -8,17 +8,15 @@ import Button from "@atlaskit/button/standard-button";
 import TextField from "@atlaskit/textfield";
 import StarIcon from '@atlaskit/icon/glyph/star';
 import EditFilledIcon from '@atlaskit/icon/glyph/edit-filled';
-import UploadIcon from '@atlaskit/icon/glyph/upload';
 import VidPlayIcon from '@atlaskit/icon/glyph/vid-play';
 import TrashIcon from '@atlaskit/icon/glyph/trash';
-
+import { toast } from 'react-toastify';
 import Form, {
     Field,
     FormFooter,
     FormHeader,
     FormSection
   } from "@atlaskit/form";
-
 const ConfigContainer = styled.div`
     height: calc(100vh - 56px);
     background-color: ${colors.N20};
@@ -52,16 +50,12 @@ const WorkatoLink = styled.div`
 font-size: 14px;
 line-height: 20px;
 color: ${colors.B300};
-
 `
-
-
 const BotConfiguration = () => {
     const history = useHistory();
     return(
        <ConfigContainer>
           
-
                 <Form<{ username: string; password: string; remember: boolean }>
       onSubmit={(data) => {
         console.log("form data", data);
@@ -82,103 +76,49 @@ const BotConfiguration = () => {
           />
           <WorkatoSection>
             <WorkatoText>Workato recipe Link:</WorkatoText>
-            <WorkatoLink>{'https://app.workato.com/recipes/2828973-getallconfluencecomments#recipe'}</WorkatoLink>
+            <WorkatoLink>{'https://app.workato.com/recipes/5345359'}</WorkatoLink>
           </WorkatoSection>
           <FormSection>
-            <h3>Confluence Configuration</h3>
+            <h3>Configuration</h3>
             <Field
               aria-required={true}
-              name="confluencePageId"
-              label="Confluence Page ID"
+              name="jiraProject"
+              label="Jira project Instance"
               isRequired
             >
               {({ fieldProps, error }) => (
                 <>
-                  <TextField autoComplete="off" {...fieldProps} />
-                </>
-              )}
-            </Field>
-            <Field
-              aria-required={true}
-              name="confluencePageLink"
-              label="Confluence Page Tiny Link"
-              isRequired
-            >
-              {({ fieldProps, error }) => (
-                <>
-                  <TextField autoComplete="off" {...fieldProps} />
-                </>
-              )}
-            </Field>
-          </FormSection>
-
-          <FormSection>
-            <h3>Google Sheet Configuration</h3>
-            <Field
-              aria-required={true}
-              name="emailId"
-              label="Enter Email ID"
-              isRequired
-            >
-              {({ fieldProps, error }) => (
-                <>
-                  <TextField autoComplete="off" {...fieldProps} />
-                </>
-              )}
-            </Field>
-            <Field
-              aria-required={true}
-              name="password"
-              label="Enter Password"
-              isRequired
-            >
-              {({ fieldProps, error }) => (
-                <>
-                  <TextField
-                    type="password"
-                    autoComplete="off"
-                    {...fieldProps}
+                  <TextField autoComplete="off" {...fieldProps}
                   />
                 </>
               )}
             </Field>
             <Field
               aria-required={true}
-              name="googleSheetId"
-              label="Google sheet ID"
+              name="gsheetLink"
+              label="Google Sheet Link"
               isRequired
             >
               {({ fieldProps, error }) => (
                 <>
-                  <TextField autoComplete="off" {...fieldProps} />
+                  <TextField autoComplete="off"
+                             {...fieldProps} />
                 </>
               )}
             </Field>
           </FormSection>
-
           <FormFooter>
             <ButtonGroup>
-              <LoadingButton
-                type="submit"
-                appearance="primary"
-                isLoading={submitting}
-              >
-                Test Connection
-              </LoadingButton>
-              <Button iconBefore={<StarIcon label="star" />} appearance="default">Save Recipe</Button>
+              <Button iconBefore={<StarIcon label="star" />} appearance="default" onClick = {()=>toast.success("Recipe successfully saved")}>Save Recipe</Button>
               <Button appearance="default" iconBefore={<EditFilledIcon label='edit' />}>Modify</Button>
-              <Button appearance="default" iconBefore={<UploadIcon label='upload' />}>Deploy</Button>
-              <Button appearance="primary" iconBefore={<VidPlayIcon label='play' />}>Run</Button>
+              <Button appearance="primary" iconBefore={<VidPlayIcon label='play' />} >Run</Button>
               <Button appearance="danger" iconBefore={<TrashIcon label='delete' />}>Delete</Button>
             </ButtonGroup>
           </FormFooter>
         </form>
       )}
     </Form>
-
        </ConfigContainer>
     )
-
 }
-
 export default BotConfiguration
