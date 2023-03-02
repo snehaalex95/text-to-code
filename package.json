@@ -2,7 +2,7 @@
   "name": "text-to-code",
   "version": "0.1.0",
   "homepage": "https://github.com/snehaalex95/text-to-code",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@atlaskit/atlassian-navigation": "^2.3.5",
     "@atlaskit/avatar": "^21.1.9",
