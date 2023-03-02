@@ -45,7 +45,7 @@ font-size: 12px;
 line-height: 16px;
 color: ${colors.N500};
 `
-const WorkatoLink = styled.div`
+const WorkatoLink = styled.a`
     font-weight: 400;
 font-size: 14px;
 line-height: 20px;
@@ -76,7 +76,7 @@ const BotConfiguration = () => {
           />
           <WorkatoSection>
             <WorkatoText>Workato recipe Link:</WorkatoText>
-            <WorkatoLink>{'https://app.workato.com/recipes/5345359'}</WorkatoLink>
+            <WorkatoLink href='https://app.workato.com/recipes/5345359' target="_blank">{'https://app.workato.com/recipes/5345359'}</WorkatoLink>
           </WorkatoSection>
           <FormSection>
             <h3>Configuration</h3>

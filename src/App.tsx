@@ -1,7 +1,7 @@
 import "./App.css";
 import GlobalNavigation from "./GlobalNavigation";
 import Home from "./view/Home";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import BotConfiguration from "./view/BotConfiguration";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
